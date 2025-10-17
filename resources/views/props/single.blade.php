@@ -122,9 +122,9 @@
         <div class="bg-white widget border rounded p-4">
           <h3 class="h4 text-black mb-3">Share</h3>
           <div>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=" class="pr-3"><span class="icon-facebook"></span></a>
-            <a href="https://twitter.com/intent/tweet?url=" class="pr-3"><span class="icon-twitter"></span></a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url="><span class="icon-linkedin"></span></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('single.prop', $singleProp->id) }}&quote={{ $singleProp->title }}" class="pr-3"><span class="icon-facebook"></span></a>
+            <a href="https://twitter.com/intent/tweet?url={{ route('single.prop', $singleProp->id) }}&text={{ $singleProp->title }}" class="pr-3"><span class="icon-twitter"></span></a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('single.prop', $singleProp->id) }}"><span class="icon-linkedin"></span></a>
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@
 
       @else
         
-        <h3>No related properties found.</h3>
+        <h3 class="alert-success py-2">No related properties found.</h3>
       
       @endif
      
