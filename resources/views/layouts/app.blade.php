@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/mediaelementplayer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/font/flaticon.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/fl-bigmug-line.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/css/flaticon.css') }}" />
     
   
     <link rel="stylesheet" href="{{ asset ('assets/css/aos.css') }}">
