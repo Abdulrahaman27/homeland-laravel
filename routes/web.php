@@ -26,3 +26,6 @@ Route::get('/props/type/Buy', [PropertiesController::class, 'propsBuy'])->name('
 
 // get properties by type (Rent) 
 Route::get('/props/type/Rent', [PropertiesController::class, 'propsRent'])->name('rent.prop');
+
+// displaying property by home_type
+Route::get('/props/home-type/{hometype}', [PropertiesController::class, 'displayByHomeType'])->name('display.prop.hometype');

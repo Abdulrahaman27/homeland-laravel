@@ -90,4 +90,11 @@ class PropertiesController extends Controller
         $propsRent = Property::where('type', $type)->orderBy('created_at', 'desc')->paginate(9);
         return view('props.propsrent', compact('propsRent'));
     }   
+    
+    public function displayByHomeType($hometype){
+        $propsByHomeType = Property::select()->where('home_type', $hometype)->get();
+        return view('props.propbyhometype', compact('propsByHomeType', 'hometype'));
+    }   
+
+     
 }
