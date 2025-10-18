@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Prop\Property;
 use App\Models\Prop\PropImage;
 use App\Models\Prop\Request as PropRequest;
+use App\Models\Prop\SavedProp;
 use Illuminate\Support\Facades\Auth;
 
 class PropertiesController extends Controller
@@ -26,7 +27,10 @@ class PropertiesController extends Controller
         // validate form requests
 
         $validateFormCount = PropRequest::where('prop_id', $id)->where('user_id', Auth::id()?? 0)->count();
-        return view('props.single', compact('singleProp', 'propImages', 'relatedProps', 'validateFormCount'));
+        
+        // Validate saving props
+        $validateSaveCount = SavedProp::where('prop_id', $id)->where('user_id', Auth::id()?? 0)->count();
+        return view('props.single', compact('singleProp', 'propImages', 'relatedProps', 'validateFormCount', 'validateSaveCount'));
     }
     public function insertRequest(Request $request, $id) {
         $request->validate([
@@ -34,9 +38,6 @@ class PropertiesController extends Controller
             'email' => 'required|email|max:70',
             'phone' => 'required|string|max:20',
         ]);
-
-
-
         PropRequest::create([
             'prop_id' =>$id,
             'agent_name' => $request->agent_name,
@@ -46,5 +47,35 @@ class PropertiesController extends Controller
             'phone' => $request->input('phone'),
         ]);
         return redirect('/props/prop-details/'.$id.'')->with('success', 'Your request has been sent successfully.');
+    }
+
+    public function saveProps(Request $request, $id){
+        $prop = Property::findOrFail($id);
+
+        if(SavedProp::where('prop_id', $prop->id)->where('user_id', Auth::id())->exists()){
+            return redirect()->back()->with('info', 'You have already saved this property.');
+        }
+        SavedProp::create([
+            'prop_id' => $prop->id,
+            'user_id' => Auth::id(),
+            'title' => $prop->title,
+            'image' => $prop->image,
+            'price' => $prop->price,
+            'location' => $prop->location,
+        ]);
+
+        return redirect()->back()->with('save', 'Property saved successfully.');
+    }
+
+    public function deleteProps(Request $request, $id){
+        $savedProp = SavedProp::where('prop_id', $id)->where('user_id', Auth::id())->first();
+
+        if(!$savedProp){
+            return redirect()->back()->with('info', 'Saved property not found.');
+        }
+
+        $savedProp->delete();
+
+        return redirect()->back()->with('delete', 'Property removed from saved properties.');
     }
 }

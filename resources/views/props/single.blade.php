@@ -28,6 +28,14 @@
     @endif
   </div>
 
+  <div class="container">
+    @if (session('save'))
+        <div class="alert alert-success text-center">
+            {{ session('save') }}
+        </div>
+    @endif
+  </div>
+
 <div class="site-section site-section-sm">
   <div class="container">
     <div class="row">
@@ -144,6 +152,41 @@
             </div>
             <div class="form-group mb-0">
               <input type="submit" name="submit" class="btn btn-primary w-100" value="Send Request">
+            </div>
+          </form>
+          @endif
+        </div>
+
+             <div class="bg-white widget border rounded p-4 mb-4">
+          <h3 class="h4 text-black mb-3">Save this property</h3>
+          @if ($validateSaveCount > 0)
+            <input type="submit" disabled name="submit" class="btn btn-primary w-100" value="you saved this property.">
+           <form action="{{ route('delete.prop', $singleProp->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-link p-0">Remove from saved properties</button>
+          </form>
+          @else
+          <form action="{{ route('save.prop', $singleProp->id) }}" method="POST" class="form-contact-agent">
+            @csrf
+            <div class="form-group">
+              <input type="hidden" name="prop_id" value="{{ $singleProp->id }}">
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="title" value="{{ $singleProp->title }}" >
+            </div>
+            
+            <div class="form-group">
+              <input type="hidden" name="image" id="name" value="{{ $singleProp->image }}" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="location" id="email" value="{{ $singleProp->location }} class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="price" id="price" value="{{ $singleProp->price }}" class="form-control">
+            </div>
+            <div class="form-group mb-0">
+              <input type="submit" name="submit" class="btn btn-primary w-100" value="Save property">
             </div>
           </form>
           @endif

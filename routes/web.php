@@ -15,3 +15,7 @@ Route::get('/props/prop-details/{id}', [PropertiesController::class, 'single'])-
 
 // Inserting requests
 Route::post('/props/prop-details/{id}', [PropertiesController::class, 'insertRequest'])->name('insert.request');
+
+// Inserting saved properties
+Route::post('/props/prop-details/save/{id}', [PropertiesController::class, 'saveProps'])->name('save.prop');
+Route::delete('/props/prop-details/delete/{id}', [PropertiesController::class, 'deleteProps'])->name('delete.prop');
