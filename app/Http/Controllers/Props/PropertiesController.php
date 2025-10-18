@@ -24,14 +24,16 @@ class PropertiesController extends Controller
         // Related props
         $relatedProps = Property::where('home_type', $singleProp->home_type)->where('id', '!=', $id)->take(3)->orderBy('created_at', 'desc')->get();
 
-        // validate form requests
+        if(Auth::check()){
+            // validate form requests
 
         $validateFormCount = PropRequest::where('prop_id', $id)->where('user_id', Auth::id()?? 0)->count();
         
         // Validate saving props
         $validateSaveCount = SavedProp::where('prop_id', $id)->where('user_id', Auth::id()?? 0)->count();
-        return view('props.single', compact('singleProp', 'propImages', 'relatedProps', 'validateFormCount', 'validateSaveCount'));
-    }
+        }else
+            return view('props.single', compact('singleProp', 'propImages', 'relatedProps'));
+        }
     public function insertRequest(Request $request, $id) {
         $request->validate([
             'name' => 'required|string|max:40',
