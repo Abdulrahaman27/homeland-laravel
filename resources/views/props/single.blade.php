@@ -20,6 +20,14 @@
   </div>
 </div>
 
+  <div class="container">
+    @if (session('success'))
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    @endif
+  </div>
+
 <div class="site-section site-section-sm">
   <div class="container">
     <div class="row">
@@ -97,32 +105,48 @@
       <!-- RIGHT COLUMN -->
       <div class="col-lg-4">
         <!-- Contact Agent -->
+
+
         <div class="bg-white widget border rounded p-4 mb-4">
           <h3 class="h4 text-black mb-3">Contact Agent</h3>
+          @if ($validateFormCount > 0)
+            <p class="alert alert-success p-2 ">You already sent a request for this property.</p>
+          @else
           <form action="{{ route('insert.request', $singleProp->id) }}" method="POST" class="form-contact-agent">
             @csrf
             <div class="form-group">
-              <input type="hidden" name="prop_id" value="{{ $singleProp->id }}" id="name" class="form-control">
+              <input type="hidden" name="prop_id" value="{{ $singleProp->id }}">
             </div>
             <div class="form-group">
-              <input type="hidden" name="agent_name" value="{{ $singleProp->agent_name }}" id="name" class="form-control">
+              <input type="hidden" name="agent_name" value="{{ $singleProp->agent_name }}" >
             </div>
+            
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" name="name" id="name" class="form-control">
+              <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
+              @error('name')
+                <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" name="email" id="email" class="form-control">
+              <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control">
+              @error('email')
+                <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="text" name="phone" id="phone" class="form-control">
+              <input type="text" name="phone" id="phone" value="{{ old('phone') }}" class="form-control">
+              @error('phone')
+                <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
             <div class="form-group mb-0">
               <input type="submit" name="submit" class="btn btn-primary w-100" value="Send Request">
             </div>
           </form>
+          @endif
         </div>
 
         <!-- Share Widget -->
