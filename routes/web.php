@@ -34,3 +34,9 @@ Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 
 // display about page
 Route::get('about', [HomeController::class, 'about'])->name('about');
+
+// displaying property by PRICE ASCENDING
+Route::get('/props/price-asc', [PropertiesController::class, 'priceAsc'])->name('price.asc.prop');
+
+// displaying property by PRICE DESCENDING
+Route::get('/props/price-desc', [PropertiesController::class, 'priceDesc'])->name('price.desc.prop');
