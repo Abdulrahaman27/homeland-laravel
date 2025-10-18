@@ -224,7 +224,6 @@
               <img src="{{ asset('assets/images/' . $relatedProp->image) }}" alt="Image" class="img-fluid rounded">
             </a>
             <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
               <h2 class="property-title">
                 <a href="{{ route('single.prop', $relatedProp->id) }}">{{ $relatedProp->title }}</a>
               </h2>

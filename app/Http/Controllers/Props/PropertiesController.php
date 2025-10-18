@@ -78,4 +78,16 @@ class PropertiesController extends Controller
 
         return redirect()->back()->with('delete', 'Property removed from saved properties.');
     }
+
+    public function propsBuy(){
+        $type = 'Buy';
+        $propsBuy = Property::where('type', $type)->orderBy('created_at', 'desc')->paginate(9);
+        return view('props.propsbuy', compact('propsBuy'));
+    }   
+  
+    public function propsRent(){
+        $type = 'Rent';
+        $propsRent = Property::where('type', $type)->orderBy('created_at', 'desc')->paginate(9);
+        return view('props.propsrent', compact('propsRent'));
+    }   
 }

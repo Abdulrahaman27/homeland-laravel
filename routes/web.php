@@ -18,4 +18,11 @@ Route::post('/props/prop-details/{id}', [PropertiesController::class, 'insertReq
 
 // Inserting saved properties
 Route::post('/props/prop-details/save/{id}', [PropertiesController::class, 'saveProps'])->name('save.prop');
+// Deleting saved properties
 Route::delete('/props/prop-details/delete/{id}', [PropertiesController::class, 'deleteProps'])->name('delete.prop');
+
+// get properties by type (Buy) 
+Route::get('/props/type/Buy', [PropertiesController::class, 'propsBuy'])->name('buy.prop');
+
+// get properties by type (Rent) 
+Route::get('/props/type/Rent', [PropertiesController::class, 'propsRent'])->name('rent.prop');
