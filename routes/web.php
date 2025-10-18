@@ -11,3 +11,7 @@ Auth::routes();
 
 Route::get('/home', [PropertiesController::class, 'index'])->name('home');
 Route::get('/prop-details/{id}', [PropertiesController::class, 'single'])->name('single.prop');
+
+
+// Inserting requests
+Route::post('/prop-details/{id}', [PropertiesController::class, 'insertRequest'])->name('insert.request');

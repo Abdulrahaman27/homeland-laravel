@@ -99,21 +99,28 @@
         <!-- Contact Agent -->
         <div class="bg-white widget border rounded p-4 mb-4">
           <h3 class="h4 text-black mb-3">Contact Agent</h3>
-          <form action="" class="form-contact-agent">
+          <form action="{{ route('insert.request', $singleProp->id) }}" method="POST" class="form-contact-agent">
+            @csrf
+            <div class="form-group">
+              <input type="hidden" name="prop_id" value="{{ $singleProp->id }}" id="name" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="agent_name" value="{{ $singleProp->agent_name }}" id="name" class="form-control">
+            </div>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" class="form-control">
+              <input type="text" name="name" id="name" class="form-control">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" class="form-control">
+              <input type="email" name="email" id="email" class="form-control">
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="text" id="phone" class="form-control">
+              <input type="text" name="phone" id="phone" class="form-control">
             </div>
             <div class="form-group mb-0">
-              <input type="submit" class="btn btn-primary w-100" value="Send Message">
+              <input type="submit" name="submit" class="btn btn-primary w-100" value="Send Request">
             </div>
           </form>
         </div>

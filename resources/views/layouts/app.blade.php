@@ -71,7 +71,7 @@
                         <li><a href="{{ route('login') }}">Login</a></li>
                     @endif
                     @if(Route::has('register'))
-                    <li><a href="{{ route('register') }}">Rgister</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
                     @endif
                   @else
                             <li class="nav-item dropdown">
