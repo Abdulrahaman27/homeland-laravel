@@ -3,13 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Props\PropertiesController;
-Route::get('/', function () {
-    return view('welcome');
-});
-
+use App\Http\Controllers\HomeController;
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [PropertiesController::class, 'index'])->name('home');
 Auth::routes();
-
-Route::get('/home', [PropertiesController::class, 'index'])->name('home');
 Route::get('/props/prop-details/{id}', [PropertiesController::class, 'single'])->name('single.prop');
 
 
@@ -29,3 +28,9 @@ Route::get('/props/type/Rent', [PropertiesController::class, 'propsRent'])->name
 
 // displaying property by home_type
 Route::get('/props/home-type/{hometype}', [PropertiesController::class, 'displayByHomeType'])->name('display.prop.hometype');
+
+// display contact page
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+
+// display about page
+Route::get('about', [HomeController::class, 'about'])->name('about');

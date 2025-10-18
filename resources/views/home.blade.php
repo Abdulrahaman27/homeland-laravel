@@ -80,9 +80,9 @@
           </div>
           <div class="ml-auto d-flex align-items-center">
             <div>
-              <a href="#" class="view-list px-3 border-right active">All</a>
-              <a href="#" class="view-list px-3 border-right">Rent</a>
-              <a href="#" class="view-list px-3">Sale</a>
+              <a href="{{ route('home') }}" class="view-list px-3 border-right active">All</a>
+              <a href="{{ route('rent.prop') }}" class="view-list px-3 border-right">Rent</a>
+              <a href="{{ route('buy.prop') }}" class="view-list px-3">Buy</a>
             </div>
             <div class="select-wrap">
               <span class="icon icon-arrow_drop_down"></span>
