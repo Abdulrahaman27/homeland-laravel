@@ -86,6 +86,9 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('saved.props') }}">
+                                        Saved Properties
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('all.requests') }}">
                                         All Requests
                                     </a>

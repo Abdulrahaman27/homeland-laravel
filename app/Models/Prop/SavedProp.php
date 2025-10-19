@@ -18,4 +18,7 @@ class SavedProp extends Model
         'location',
 
     ];
+    public function property(){
+        return $this->belongsTo(Property::class, 'prop_id');
+    }
 }

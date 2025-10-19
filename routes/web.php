@@ -33,6 +33,8 @@ Route::get('/props/home-type/{hometype}', [PropertiesController::class, 'display
 // users pages
 Route::get('/user/all-requests', [UsersController::class, 'allRequests'])->name('all.requests');
 
+// displaying saved properties
+Route::get('/user/saved-properties', [UsersController::class, 'savedProperties'])->name('saved.props');
 
 // display contact page
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');
