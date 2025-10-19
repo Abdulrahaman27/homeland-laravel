@@ -86,6 +86,10 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('all.requests') }}">
+                                        All Requests
+                                    </a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -132,7 +136,7 @@
               </div>
               <div class="col-md-6 col-lg-6">
                 <ul class="list-unstyled">
-                  <li><a href="{{ url('/') }}">Home</a></li>
+                  <li><a href="{{ url('home') }}">Home</a></li>
                   <li><a href="{{ route('buy.prop') }}">Buy</a></li>
                   <li><a href="{{ route('rent.prop') }}">Rent</a></li>
                   <li><a href="#">Properties</a></li>

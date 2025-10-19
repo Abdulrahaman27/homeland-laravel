@@ -17,23 +17,43 @@ class PropertiesController extends Controller
         return view('home', compact('props'));
     }
 
-    public function single($id) {
-        $singleProp = Property::findOrFail($id);
-        $propImages = PropImage::where('prop_id', $id)->get(); 
+   public function single($id)
+{
+    $singleProp = Property::findOrFail($id);
+    $propImages = PropImage::where('prop_id', $id)->get();
 
-        // Related props
-        $relatedProps = Property::where('home_type', $singleProp->home_type)->where('id', '!=', $id)->take(3)->orderBy('created_at', 'desc')->get();
+    // Related properties
+    $relatedProps = Property::where('home_type', $singleProp->home_type)
+        ->where('id', '!=', $id)
+        ->take(3)
+        ->orderBy('created_at', 'desc')
+        ->get();
 
-        if(Auth::check()){
-            // validate form requests
+    // Default values (for guests)
+    $validateFormCount = 0;
+    $validateSaveCount = 0;
 
-        $validateFormCount = PropRequest::where('prop_id', $id)->where('user_id', Auth::id()?? 0)->count();
-        
-        // Validate saving props
-        $validateSaveCount = SavedProp::where('prop_id', $id)->where('user_id', Auth::id()?? 0)->count();
-        }else
-            return view('props.single', compact('singleProp', 'propImages', 'relatedProps'));
-        }
+    // If the user is logged in, validate their actions
+    if (Auth::check()) {
+        $validateFormCount = PropRequest::where('prop_id', $id)
+            ->where('user_id', Auth::id())
+            ->count();
+
+        $validateSaveCount = SavedProp::where('prop_id', $id)
+            ->where('user_id', Auth::id())
+            ->count();
+    }
+
+    // Return view for both guests and logged-in users
+    return view('props.single', compact(
+        'singleProp',
+        'propImages',
+        'relatedProps',
+        'validateFormCount',
+        'validateSaveCount'
+    ));
+}
+ 
     public function insertRequest(Request $request, $id) {
         $request->validate([
             'name' => 'required|string|max:40',
@@ -108,6 +128,7 @@ class PropertiesController extends Controller
         $propsPriceDesc = Property::orderBy('price', 'desc')->take(9)->get();
         return view('props.propspricedesc ', compact('propsPriceDesc'));
     }
+
 
      
 }

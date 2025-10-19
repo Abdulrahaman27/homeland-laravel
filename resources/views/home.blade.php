@@ -187,7 +187,7 @@
       <div class="row">
           <div class="col-md-6 col-lg-4 mb-5 mb-lg-5">
             <div class="team-member">
-                           <img src={{ asset('assets/images/person_2.jpg')}}" alt="Image" class="img-fluid rounded mb-4">
+                           <img src="{{ asset('assets/images/person_4.jpg')}}" alt="Image" class="img-fluid rounded mb-4">
               <div class="text">
                 <h2 class="mb-2 font-weight-light text-black h4">Megan Smith</h2>
                 <span class="d-block mb-3 text-white-opacity-05">Real Estate Agent</span>
