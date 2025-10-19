@@ -44,6 +44,8 @@ Route::group(['prefix' => 'props'], function () {
     // displaying property by PRICE DESCENDING
     Route::get('price-desc', [PropertiesController::class, 'priceDesc'])->name('price.desc.prop');
 
+    // Searching for properties
+    Route::any('search', [PropertiesController::class, 'searchProps'])->name('search.prop');
 });
 
 

@@ -129,6 +129,18 @@ class PropertiesController extends Controller
         return view('props.propspricedesc ', compact('propsPriceDesc'));
     }
 
+    // searching for props  
+    public function searchProps(Request $request){
+        $list_types = $request->input('list_types');
+        $offer_types = $request->input('offer_types');
+        $select_city = $request->input('select_city');
 
+        $searchResults = Property::where('home_type', $list_types)
+            ->where('type', $offer_types)
+            ->where('city', 'LIKE', '%' . $select_city . '%')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('props.searchresults', compact('searchResults'));
+    }
      
 }
