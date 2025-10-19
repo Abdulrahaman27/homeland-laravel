@@ -13,14 +13,21 @@ class UsersController extends Controller
 {
     public function allRequests()
     {
+        if (!auth()->user()) {
+            return redirect()->route('login');
+        }
         $Requests = Requests::where('user_id', auth()->id())->get();
         return view('users.displayrequests', compact('Requests'));
     }
 
     public function savedProperties(){
+         if (!auth()->user()) {
+            return redirect()->route('login');
+        }else{
         $savedProps = SavedProp::with('property')
-    ->where('user_id', auth()->id())
-    ->get();
+        ->where('user_id', auth()->id())
+        ->get();
         return view('users.savedproperties', compact('savedProps'));
+        }
     }
-}
+} 
