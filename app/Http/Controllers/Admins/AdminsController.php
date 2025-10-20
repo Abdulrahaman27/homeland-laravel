@@ -132,5 +132,54 @@ class AdminsController extends Controller
         $allProperties = Property::all();
         return view('admins.properties', compact('allProperties'));
     }
-  
+
+    // Create properties
+    public function createProperties() {
+        return view('admins.createproperties');
+    }
+
+    // store properties
+public function storeProperties(Request $request)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'more_info' => 'required|string',
+        'price' => 'required|string',
+        'price_sqft' => 'required|string',
+        'bed' => 'required|integer',
+        'baths' => 'required|integer',
+        'sq_ft' => 'required|integer',
+        'year_built' => 'required|integer',
+        'location' => 'required|string|max:255',
+        'home_type' => 'required|string|max:255',
+        'city' => 'required|string|max:255',
+        'type' => 'required|string|max:255',
+        'agent_name' => 'required|string|max:255',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    $destinationPath = 'assets/images/';
+    $myimage = time() . '_' . $request->image->getClientOriginalName();
+    $request->image->move(public_path($destinationPath), $myimage);
+
+    $storeProperties = Property::create([
+        'title' => $request->title,
+        'more_info' => $request->more_info,
+        'price' => $request->price,
+        'price_sqft' => $request->price_sqft,
+        'sq_ft' => $request->sq_ft,
+        'bed' => $request->bed, // ✅ fixed name
+        'baths' => $request->baths,
+        'year_built' => $request->year_built,
+        'type' => $request->type,
+        'city' => $request->city,
+        'location' => $request->location,
+        'home_type' => $request->home_type,
+        'agent_name' => $request->agent_name,
+        'image' => $myimage,
+    ]);
+
+    return redirect('/admin/all-properties')->with('success', 'Property added successfully.');
+}
+
 }

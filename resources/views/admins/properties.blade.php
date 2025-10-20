@@ -4,8 +4,15 @@
         <div class="col">
           <div class="card">
             <div class="card-body">
+            <div class="container">
+                    @if (session('success'))
+                        <div class="alert alert-success text-center">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+            </div>
               <h5 class="card-title mb-4 d-inline">Properties</h5>
-              <a href="create-properties.html" class="btn btn-primary mb-4 text-center float-right ">Create Properties</a>
+              <a href="{{ route('properties.create') }}" class="btn btn-primary mb-4 text-center float-right ">Create Properties</a>
               <a href="create-Gallery.html" class="btn btn-primary mb-4 text-center float-right mr-5">Create Gallery</a>
 
               <table class="table mt-4">
