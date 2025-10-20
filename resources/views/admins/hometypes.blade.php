@@ -28,8 +28,14 @@
                     <tr>
                         <th scope="row">{{ $allHomeType->id }}</th>
                         <td>{{ $allHomeType->home_types }}</td>
-                        {{-- <td><a  href="{{ route('', ) }}" class="btn btn-warning text-white text-center ">Update</a></td> --}}
-                        {{-- <td><a href="{{ route('') }}" class="btn btn-danger  text-center ">Delete</a></td> --}}
+                        <td><a  href="{{ route('hometypes.edit', $allHomeType->id ) }}" class="btn btn-warning text-white text-center ">Update</a></td>
+                        <td>
+                          <form action="{{ route('hometypes.delete', $allHomeType->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this hometype?');">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-danger text-center">Delete</button>
+                          </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

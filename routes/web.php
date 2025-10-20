@@ -79,4 +79,9 @@ Route::post('/create-admins', [AdminsController::class, 'storeAdmins'])->name('a
 Route::get('/all-hometypes', [AdminsController::class, 'allHomeTypes'])->name('admins.hometypes');
 Route::get('/create-hometypes', [AdminsController::class, 'createHomeTypes'])->name('hometypes.create');
 Route::post('/create-hometypes', [AdminsController::class, 'storeHomeTypes'])->name('hometypes.store');
+
+// Update home types
+Route::get('/edit-hometypes/{id}', [AdminsController::class, 'editHomeTypes'])->name('hometypes.edit');
+Route::post('/edit-hometypes/{id}', [AdminsController::class, 'updateHomeTypes'])->name('hometypes.update');
+Route::delete('/delete-hometypes/{id}', [AdminsController::class, 'deleteHomeTypes'])->name('hometypes.delete'); 
 });

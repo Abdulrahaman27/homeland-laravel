@@ -90,5 +90,31 @@ class AdminsController extends Controller
             return redirect('/admin/all-hometypes/')->with('success', 'Home type added successfully.');
         } 
     }
-   
+
+    // Edit home types
+    public function editHomeTypes($id) {
+        $homeType = HomeType::find($id);
+        return view('admins.edithometypes', compact('homeType'));
+    }
+
+    // Update home types
+    public function updateHomeTypes(Request $request, $id){
+        Request()->validate([
+            'hometypes' => 'required|string|max:255',
+        ]);
+        $homeType = HomeType::find($id);
+        $homeType->home_types = $request->input('hometypes');
+        $homeType->save();
+
+        return redirect()->route('admins.hometypes')->with('success', 'Home type updated successfully.');
+    }
+
+    // delete home types
+    public function deleteHomeTypes($id){
+        $homeType = HomeType::find($id);
+        $homeType->delete();
+
+        return redirect()->route('admins.hometypes')->with('success', 'Home type deleted successfully.');
+    }
+  
 }
