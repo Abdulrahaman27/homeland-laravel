@@ -60,4 +60,11 @@ class AdminsController extends Controller
             return redirect('/admin/all-admins/')->with('success', 'Admin added successfully.');
         }
     }
+
+    // Home types 
+     public function allHomeTypes() {
+        $allHomeTypes = HomeType::all();
+        return view('admins.hometypes', compact('allHomeTypes'));
+    }
+   
 }
