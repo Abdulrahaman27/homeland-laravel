@@ -70,4 +70,5 @@ Route::post('/admin/logout', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 // Admins routes
 Route::get('/index', [AdminsController::class, 'index'])->name('admins.dashboard');
+Route::get('/all-admins', [AdminsController::class, 'allAdmins'])->name('admins.admins');
 });

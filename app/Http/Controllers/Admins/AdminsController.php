@@ -30,4 +30,9 @@ class AdminsController extends Controller
         $hometypesCount = HomeType::select()->count();
         return view('admins.index', compact('adminsCount', 'propsCount', 'hometypesCount'));
     }
+   
+    public function allAdmins() {
+        $allAdmins = Admin::all();
+        return view('admins.admins', compact('allAdmins'));
+    }
 }
