@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Hash;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Models\Prop\Request As PropRequest;
+use App\Models\Prop\PropImage;
 
 class AdminsController extends Controller
 {
@@ -182,4 +183,31 @@ public function storeProperties(Request $request)
     return redirect('/admin/all-properties')->with('success', 'Property added successfully.');
 }
 
+    public function createGallery() {
+        return view('admins.creategallery');
+    }
+
+    public function storeGallery(Request $request){
+        $request->validate([
+            'prop_id' => 'required|integer|exists:props,id',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $destinationPath = 'assets/images/';
+
+        if($request->hasfile('images')) {
+            foreach($request->file('images') as $image) {
+                $myimage = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path($destinationPath), $myimage);
+
+                // Assuming you have a Gallery model to save gallery images
+                PropImage::create([
+                    'prop_id' => $request->prop_id,
+                    'image' => $myimage,
+                ]);
+            }
+        }
+
+        return redirect('/admin/create-gallery')->with('success', 'Gallery images added successfully.');
+    }
 }

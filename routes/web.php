@@ -95,4 +95,7 @@ Route::get('/create-properties', [AdminsController::class, 'createProperties'])-
 Route::post('/create-properties', [AdminsController::class, 'storeProperties'])->name('properties.store');  
 Route::delete('/delete-properties/{id}', [AdminsController::class, 'deleteProperties'])->name('properties.delete'); 
 
+// Gallery routes
+Route::get('/create-gallery', [AdminsController::class, 'createGallery'])->name('gallery.create');
+Route::post('/create-gallery', [AdminsController::class, 'storeGallery'])->name('gallery.store');  
 });
