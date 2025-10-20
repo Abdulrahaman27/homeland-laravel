@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admins;
+use App\Models\Admin\Admin;
+use App\Models\Prop\Property;
+use App\Models\Prop\HomeType;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -22,6 +25,9 @@ class AdminsController extends Controller
     }
 
     public function index() {
-        return view('admins.index');
+        $adminsCount = Admin::select()->count();
+        $propsCount = Property::select()->count();
+        $hometypesCount = HomeType::select()->count();
+        return view('admins.index', compact('adminsCount', 'propsCount', 'hometypesCount'));
     }
 }
