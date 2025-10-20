@@ -77,4 +77,6 @@ Route::get('/create-admins', [AdminsController::class, 'createAdmins'])->name('a
 Route::post('/create-admins', [AdminsController::class, 'storeAdmins'])->name('admins.store');
     // home types routes
 Route::get('/all-hometypes', [AdminsController::class, 'allHomeTypes'])->name('admins.hometypes');
+Route::get('/create-hometypes', [AdminsController::class, 'createHomeTypes'])->name('hometypes.create');
+Route::post('/create-hometypes', [AdminsController::class, 'storeHomeTypes'])->name('hometypes.store');
 });
