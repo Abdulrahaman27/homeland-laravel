@@ -36,7 +36,7 @@
             <a class="nav-link" href="{{ route('admins.hometypes') }}" style="margin-left: 20px;">Hometypes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="properties-admins/show-properties.html" style="margin-left: 20px;">Properties</a>
+            <a class="nav-link" href="{{ route('admins.properties')}}" style="margin-left: 20px;">Properties</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('requests.all') }}" style="margin-left: 20px;">Requests</a>

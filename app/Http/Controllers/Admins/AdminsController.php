@@ -125,5 +125,12 @@ class AdminsController extends Controller
         $requests = PropRequest::all();
         return view('admins.requests', compact('requests'));
     }
+
+
+    // Properties section
+    public function allProperties() {
+        $allProperties = Property::all();
+        return view('admins.properties', compact('allProperties'));
+    }
   
 }

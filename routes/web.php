@@ -87,4 +87,12 @@ Route::delete('/delete-hometypes/{id}', [AdminsController::class, 'deleteHomeTyp
 
 // Requests
 Route::get('/all-requests', [AdminsController::class, 'requests'])->name('requests.all');
+
+
+// Properties routes
+Route::get('/all-properties', [AdminsController::class, 'allProperties'])->name('admins.properties');
+Route::get('/create-properties', [AdminsController::class, 'createProperties'])->name('properties.create');
+Route::post('/create-properties', [AdminsController::class, 'storeProperties'])->name('properties.store');  
+Route::delete('/delete-properties/{id}', [AdminsController::class, 'deleteProperties'])->name('properties.delete'); 
+
 });
