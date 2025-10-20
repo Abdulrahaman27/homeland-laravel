@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
+use Symfony\Component\HttpFoundation\RequestStack;
+use App\Models\Prop\Request As PropRequest;
+
 class AdminsController extends Controller
 {
     public function viewLogin() {
@@ -92,7 +95,7 @@ class AdminsController extends Controller
     }
 
     // Edit home types
-    public function editHomeTypes($id) {
+    public function editHomeTypes(Request $request, $id) {
         $homeType = HomeType::find($id);
         return view('admins.edithometypes', compact('homeType'));
     }
@@ -115,6 +118,12 @@ class AdminsController extends Controller
         $homeType->delete();
 
         return redirect()->route('admins.hometypes')->with('success', 'Home type deleted successfully.');
+    }
+
+    // Request sent to admin
+       public function requests() {
+        $requests = PropRequest::all();
+        return view('admins.requests', compact('requests'));
     }
   
 }

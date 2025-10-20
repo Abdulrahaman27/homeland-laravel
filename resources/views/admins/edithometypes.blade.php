@@ -5,12 +5,14 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-5 d-inline">Update Hometypes</h5>
-          <form method="POST" action="{{ route('hometypes.update', $homeType->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('hometypes.update', $homeType->id) }}" enctype="multipart/form-data">
             @csrf
                 <!-- Email input -->
                 <div class="form-outline mb-4 mt-4">
                   <input type="text" name="hometypes" id="form2Example1" value="{{ $homeType->home_types }}" class="form-control" placeholder="hometype" />
-                 
+                    @error('hometypes')
+            <small class="text-danger"><strong>{{ $message }}</strong></small>
+          @enderror
                 </div>
 
       
