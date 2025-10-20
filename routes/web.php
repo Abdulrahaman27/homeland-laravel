@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Props\PropertiesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\UsersController;
+use App\Http\Controllers\Admins\AdminsController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -57,3 +58,16 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('saved-properties', [UsersController::class, 'savedProperties'])->name('saved.props');
 });
 
+Route::get('admin/login', [AdminsController::class, 'viewLogin'])->name('view.login')->middleware('checkforauth');
+Route::post('admin/login', [AdminsController::class, 'checkLogin'])->name('check.login');
+Route::post('/admin/logout', function () {
+    Auth::guard('admin')->logout();
+    session()->invalidate();
+    session()->regenerateToken();
+    return redirect()->route('view.login');
+})->name('admin.logout');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+// Admins routes
+Route::get('/index', [AdminsController::class, 'index'])->name('admins.dashboard');
+});
