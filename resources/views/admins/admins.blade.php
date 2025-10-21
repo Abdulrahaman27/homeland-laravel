@@ -26,7 +26,7 @@
                     @foreach ($allAdmins as $allAdmin )
                         
                     <tr>
-                        <th scope="row">{{ $allAdmin->id }}</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $allAdmin->name }}</td>
                         <td>{{ $allAdmin->email }}</td>
                     </tr>

@@ -19,18 +19,16 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($requests as $request )
                   <tr>
-
-                    @foreach ($requests as $request )
-                        
-                    @endforeach
-                    <th scope="row">{{$request->id}}</th>
+                    <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $request->name }}</td>
                     <td>{{ $request->email }}</td>
                     <td>{{ $request->phone }}</td>
                     <td>{{ $request->agent_name }}</td>
-                     <td><a href="{{ route('single.prop', $request->prop_id) }}" class="btn btn-success  text-center ">go</a></td>
+                    <td><a href="{{ route('single.prop', $request->prop_id) }}" class="btn btn-success  text-center ">go</a></td>
                   </tr>
+                  @endforeach
                 </tbody>
               </table> 
             </div>

@@ -29,7 +29,7 @@
                   <tr>
                     @foreach ($allProperties as $property)
                         
-                    <th scope="row">{{ $property->id }}</th>
+                    <th scope="row">{{ $loop->iteration}}</th>
                     <td>{{ $property->location }}</td>
                     <td>{{ $property->price }}</td>
                     <td>{{ $property->home_type }}</td>

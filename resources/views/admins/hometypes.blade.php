@@ -26,7 +26,7 @@
                     @foreach ($allHomeTypes as $allHomeType )
                         
                     <tr>
-                        <th scope="row">{{ $allHomeType->id }}</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $allHomeType->home_types }}</td>
                         <td><a  href="{{ route('hometypes.edit', $allHomeType->id ) }}" class="btn btn-warning text-white text-center ">Update</a></td>
                         <td>
