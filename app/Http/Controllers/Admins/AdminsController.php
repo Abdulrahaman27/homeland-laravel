@@ -185,7 +185,8 @@ public function storeProperties(Request $request)
 }
 
     public function createGallery() {
-        return view('admins.creategallery');
+        $allProps = Property::all();
+        return view('admins.creategallery', compact('allProps'));
     }
 
     public function storeGallery(Request $request){
@@ -209,7 +210,7 @@ public function storeProperties(Request $request)
             }
         }
 
-        return redirect('/admin/create-gallery')->with('success', 'Gallery images added successfully.');
+        return redirect()->route('gallery.create')->with('success', 'Gallery images added successfully.');
     }
 
   public function deleteProps($id){

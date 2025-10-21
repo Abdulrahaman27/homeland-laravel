@@ -12,7 +12,7 @@
                     @endif
             </div>
               <h5 class="card-title mb-4 d-inline">Properties</h5>
-              <a href="{{ route('admins.properties') }}" class="btn btn-primary mb-4 text-center float-right ">Create Properties</a>
+              <a href="{{ route('properties.create') }}" class="btn btn-primary mb-4 text-center float-right ">Create Properties</a>
               <a href="{{ route('gallery.create') }}" class="btn btn-primary mb-4 text-center float-right mr-5">Create Gallery</a>
 
               <table class="table mt-4">

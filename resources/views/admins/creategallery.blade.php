@@ -23,9 +23,9 @@
                         </div>
                         <select name="prop_id" class="form-control mt-3 mb-4 form-select" aria-label="Default select example">
                             <option selected>Select Property</option>
-                            <option value="3">871 Crenshaw Blvd</option>
-                            <option value="4">Brooklyn</option>
-                            <option value="5">853 S Lucerne Blvd</option>
+                            @foreach ($allProps as $allProp )
+                            <option value="{{ $allProp->id }}">{{ $allProp->title }}</option>
+                            @endforeach
                         </select>  
                         <!-- Submit button -->
                         <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">create</button>
