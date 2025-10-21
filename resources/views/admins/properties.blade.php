@@ -33,7 +33,7 @@
                     <td>{{ $property->location }}</td>
                     <td>{{ $property->price }}</td>
                     <td>{{ $property->home_type }}</td>
-                     <td><a href="delete-posts.html" class="btn btn-danger  text-center ">delete</a></td>
+                     <td><a href="{{ route('delete.props', $property->id) }}" class="btn btn-danger  text-center ">delete</a></td>
                   </tr>
                     @endforeach
                 </tbody>

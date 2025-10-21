@@ -17,6 +17,9 @@
                         <div class="mb-3">
                             <label for="formFileMultiple" class="form-label">Property Images</label>
                             <input name="images[]" class="form-control" type="file" id="formFileMultiple" multiple>
+                               @error('images')
+                                    <small class="text-danger"><strong>{{ $message }}</strong></small>
+                                  @enderror
                         </div>
                         <select name="prop_id" class="form-control mt-3 mb-4 form-select" aria-label="Default select example">
                             <option selected>Select Property</option>

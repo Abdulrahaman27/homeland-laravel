@@ -11,6 +11,7 @@ use Hash;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Models\Prop\Request As PropRequest;
 use App\Models\Prop\PropImage;
+use Illuminate\Support\Facades\File;
 
 class AdminsController extends Controller
 {
@@ -210,4 +211,27 @@ public function storeProperties(Request $request)
 
         return redirect('/admin/create-gallery')->with('success', 'Gallery images added successfully.');
     }
+
+  public function deleteProps($id){
+    $property = Property::find($id);
+
+    // Delete gallery images first
+    PropImage::where('prop_id', $id)->each(function($img){
+        if(File::exists(public_path('assets/images/' . $img->image))){
+            File::delete(public_path('assets/images/' . $img->image));
+        }
+        $img->delete();
+    });
+
+    // Delete the main property image
+    if(File::exists(public_path('assets/images/' . $property->image))){
+        File::delete(public_path('assets/images/' . $property->image));
+    }
+
+    // Delete the property record
+    $property->delete();
+
+    return redirect()->route('admins.properties')->with('success', 'Property deleted successfully.');
+}
+
 }
