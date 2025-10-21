@@ -57,8 +57,8 @@ class AdminsController extends Controller
     {
         Request()->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:admins',
-            'password' => 'required|string|min:8|confirmed',
+            'email' => 'required|string|email|max:255|unique:admin',
+            'password' => 'required|string|min:8',
         ]);
         $storeAdmins = Admin::create([
             'name' => $request['name'],
